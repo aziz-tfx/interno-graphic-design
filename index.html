@@ -3,257 +3,476 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Курс «Графический дизайнер» — INTERNO School</title>
-<meta name="description" content="Станьте графическим дизайнером за 4 месяца. Практический курс INTERNO School: портфолио из 8 проектов, наставник, помощь с первыми заказами. Запишитесь на бесплатный урок!">
-<meta property="og:title" content="Курс «Графический дизайнер» — INTERNO School">
-<meta property="og:description" content="С нуля до первых заказов за 4 месяца. Бесплатный вводный урок — записывайтесь!">
+<title>Графический дизайн — курс INTERNO School</title>
+<meta name="description" content="Курс графического дизайна INTERNO School: 16 недель практики, 8 проектов в портфолио, наставник и первые заказы ещё до выпуска. Бесплатный вводный урок.">
+<meta property="og:title" content="Графический дизайн — курс INTERNO School">
+<meta property="og:description" content="С нуля до первых заказов за 16 недель. Бесплатный вводный урок.">
 <meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23e8431f'/><text x='50' y='72' font-size='64' font-family='Georgia' text-anchor='middle' fill='%23f4f0e8'>i</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500;1,600&family=Golos+Text:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#0d0d12;
-  --bg-soft:#15151d;
-  --card:#1b1b26;
-  --accent:#c8f542;
-  --accent-2:#8b5cf6;
-  --text:#f4f4f6;
-  --muted:#a0a0b0;
-  --radius:20px;
+  --paper:#f4f0e8;
+  --paper-2:#ece7dc;
+  --ink:#161410;
+  --ink-soft:#6e675c;
+  --accent:#e8431f;
+  --line:rgba(22,20,16,.16);
+  --serif:'Playfair Display',Georgia,serif;
+  --sans:'Golos Text',system-ui,sans-serif;
+  --mono:'IBM Plex Mono',monospace;
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
-h1,h2,h3,.logo{font-family:'Unbounded',sans-serif}
-img{max-width:100%;display:block}
+body{
+  font-family:var(--sans);
+  background:var(--paper);
+  color:var(--ink);
+  line-height:1.6;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+::selection{background:var(--accent);color:var(--paper)}
 a{color:inherit;text-decoration:none}
-.container{max-width:1140px;margin:0 auto;padding:0 20px}
-section{padding:80px 0}
+img{max-width:100%;display:block}
+.wrap{max-width:1280px;margin:0 auto;padding:0 clamp(20px,4vw,56px)}
+
+/* grain */
+body::after{
+  content:"";position:fixed;inset:0;z-index:2000;pointer-events:none;opacity:.5;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.mono{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+.serif-i{font-family:var(--serif);font-style:italic;font-weight:500}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(28px);transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1)}
+.rv.on{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}}
 
 /* ---------- header ---------- */
-header{position:sticky;top:0;z-index:100;background:rgba(13,13,18,.85);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.06)}
-.nav{display:flex;align-items:center;justify-content:space-between;padding:16px 0}
-.logo{font-weight:800;font-size:20px;letter-spacing:.05em}
-.logo span{color:var(--accent)}
-.nav-links{display:flex;gap:28px;font-size:14px;color:var(--muted)}
-.nav-links a:hover{color:var(--text)}
-.btn{display:inline-block;padding:14px 28px;border-radius:60px;font-weight:600;font-size:15px;cursor:pointer;border:none;transition:.25s;text-align:center}
-.btn-accent{background:var(--accent);color:#0d0d12}
-.btn-accent:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(200,245,66,.35)}
-.btn-outline{border:1px solid rgba(255,255,255,.25);color:var(--text);background:transparent}
-.btn-outline:hover{border-color:var(--accent);color:var(--accent)}
-.btn-sm{padding:10px 20px;font-size:13px}
+header{
+  position:sticky;top:0;z-index:100;
+  background:color-mix(in srgb,var(--paper) 88%,transparent);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:18px 0}
+.logo{font-family:var(--serif);font-weight:700;font-size:21px;letter-spacing:-.01em}
+.logo i{font-style:italic;color:var(--accent)}
+.nav .mono{color:var(--ink-soft)}
+.nav-mid{display:flex;gap:32px}
+.nav-mid a{position:relative;padding:4px 0;color:var(--ink-soft);transition:color .2s}
+.nav-mid a::after{content:"";position:absolute;left:0;bottom:0;width:0;height:1px;background:var(--ink);transition:width .3s cubic-bezier(.22,1,.36,1)}
+.nav-mid a:hover{color:var(--ink)}
+.nav-mid a:hover::after{width:100%}
+
+.btn{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:var(--sans);font-weight:500;font-size:15px;
+  padding:14px 26px;border:1px solid var(--ink);border-radius:999px;
+  background:transparent;color:var(--ink);cursor:pointer;
+  transition:background .25s,color .25s,transform .15s;
+}
+.btn:hover{background:var(--ink);color:var(--paper)}
+.btn:active{transform:scale(.98)}
+.btn:focus-visible,a:focus-visible,input:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.btn-solid{background:var(--ink);color:var(--paper)}
+.btn-solid:hover{background:var(--accent);border-color:var(--accent);color:var(--paper)}
+.btn-accent{background:var(--accent);border-color:var(--accent);color:var(--paper)}
+.btn-accent:hover{background:var(--ink);border-color:var(--ink)}
+.btn .arr{transition:transform .3s cubic-bezier(.22,1,.36,1)}
+.btn:hover .arr{transform:translateX(4px)}
+.btn-sm{padding:10px 20px;font-size:14px}
 
 /* ---------- hero ---------- */
-.hero{padding:90px 0 70px;position:relative}
-.hero::before{content:"";position:absolute;top:-200px;right:-200px;width:600px;height:600px;background:radial-gradient(circle,rgba(139,92,246,.25),transparent 65%);pointer-events:none}
-.hero::after{content:"";position:absolute;bottom:-250px;left:-200px;width:600px;height:600px;background:radial-gradient(circle,rgba(200,245,66,.12),transparent 65%);pointer-events:none}
-.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center;position:relative;z-index:1}
-.tag{display:inline-block;padding:8px 18px;border-radius:60px;background:rgba(200,245,66,.12);color:var(--accent);font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-bottom:24px}
-.hero h1{font-size:clamp(32px,4.6vw,54px);font-weight:800;line-height:1.15;margin-bottom:22px}
-.hero h1 em{font-style:normal;color:var(--accent)}
-.hero p.lead{font-size:18px;color:var(--muted);max-width:520px;margin-bottom:34px}
-.hero-cta{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:40px}
-.hero-stats{display:flex;gap:40px;flex-wrap:wrap}
-.stat b{display:block;font-family:'Unbounded';font-size:28px;color:var(--accent)}
-.stat span{font-size:13px;color:var(--muted)}
-.hero-visual{position:relative}
-.hero-card{background:linear-gradient(145deg,#1d1d29,#14141c);border:1px solid rgba(255,255,255,.08);border-radius:28px;padding:36px;position:relative;overflow:hidden}
-.hero-card::before{content:"Aa";position:absolute;right:-30px;bottom:-60px;font-family:'Unbounded';font-size:220px;font-weight:800;color:rgba(139,92,246,.15);line-height:1}
-.hero-card .chip{display:inline-block;background:var(--accent-2);color:#fff;font-size:12px;font-weight:600;padding:6px 14px;border-radius:40px;margin-bottom:18px}
-.hero-card h3{font-size:22px;margin-bottom:10px}
-.hero-card p{color:var(--muted);font-size:14px;margin-bottom:24px}
-.palette{display:flex;gap:10px}
-.palette i{width:42px;height:42px;border-radius:12px;display:block}
-.floating{position:absolute;background:var(--card);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:12px 18px;font-size:13px;font-weight:600;box-shadow:0 16px 40px rgba(0,0,0,.45)}
-.floating.f1{top:-18px;left:-24px;color:var(--accent)}
-.floating.f2{bottom:-18px;right:-10px;color:var(--accent-2)}
+.hero{padding:clamp(48px,7vh,90px) 0 0;position:relative}
+.hero-meta{display:flex;justify-content:space-between;gap:16px;color:var(--ink-soft);border-bottom:1px solid var(--line);padding-bottom:14px;margin-bottom:clamp(28px,5vh,56px);flex-wrap:wrap}
+.hero-meta .dot{color:var(--accent)}
+.hero h1{
+  font-family:var(--serif);font-weight:700;
+  font-size:clamp(44px,9.2vw,132px);
+  line-height:.98;letter-spacing:-.02em;
+  text-wrap:balance;
+}
+.hero h1 .l2{display:block;padding-left:clamp(0px,12vw,180px)}
+.hero h1 .l3{display:block}
+.hero h1 em{font-style:italic;font-weight:600;color:var(--accent)}
+.hero h1 .pill{
+  display:inline-block;vertical-align:middle;
+  width:clamp(70px,11vw,170px);height:clamp(38px,5.4vw,84px);
+  border-radius:999px;margin:0 clamp(6px,1vw,18px);
+  background:
+    radial-gradient(circle at 30% 30%, #f2b6a0, transparent 60%),
+    radial-gradient(circle at 75% 70%, #e8431f, transparent 55%),
+    conic-gradient(from 200deg at 50% 50%, #161410, #e8431f, #f2b6a0, #161410);
+  position:relative;overflow:hidden;
+}
+.hero h1 .pill::after{content:"";position:absolute;inset:0;border-radius:inherit;border:1px solid rgba(22,20,16,.25)}
+.hero-cols{
+  display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);
+  gap:clamp(24px,4vw,64px);align-items:end;
+  margin-top:clamp(30px,5vh,56px);padding-bottom:clamp(36px,6vh,72px);
+}
+.hero-note{max-width:44ch;font-size:17px;color:var(--ink-soft)}
+.hero-note b{color:var(--ink);font-weight:600}
+.hero-actions{display:flex;align-items:center;gap:14px;justify-content:flex-end;flex-wrap:wrap}
+.sticker{
+  position:absolute;right:clamp(8px,6vw,120px);top:clamp(90px,14vh,150px);
+  width:132px;height:132px;border-radius:50%;
+  background:var(--accent);color:var(--paper);
+  display:flex;align-items:center;justify-content:center;text-align:center;
+  transform:rotate(12deg);
+  font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;
+  line-height:1.5;padding:16px;
+  animation:floaty 5s ease-in-out infinite;
+  z-index:2;
+}
+.sticker b{display:block;font-family:var(--serif);font-style:italic;font-size:17px;text-transform:none;letter-spacing:0}
+@keyframes floaty{0%,100%{transform:rotate(12deg) translateY(0)}50%{transform:rotate(9deg) translateY(-10px)}}
+@media(prefers-reduced-motion:reduce){.sticker{animation:none}}
 
-/* ---------- ticker ---------- */
-.ticker{border-top:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.06);padding:18px 0;overflow:hidden;background:var(--bg-soft)}
-.ticker-track{display:flex;gap:48px;white-space:nowrap;animation:scroll 28s linear infinite;width:max-content}
-.ticker-track span{font-family:'Unbounded';font-size:14px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
-.ticker-track span::after{content:"✦";color:var(--accent);margin-left:48px}
-@keyframes scroll{to{transform:translateX(-50%)}}
+/* stat strip */
+.stats{border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.stats .wrap{display:grid;grid-template-columns:repeat(4,1fr)}
+.stat{padding:26px clamp(12px,2vw,32px);border-left:1px solid var(--line)}
+.stat:first-child{border-left:none;padding-left:0}
+.stat b{display:block;font-family:var(--serif);font-weight:700;font-size:clamp(24px,3vw,40px);line-height:1.1;font-variant-numeric:tabular-nums}
+.stat span{color:var(--ink-soft);font-size:13.5px}
+
+/* ---------- marquee ---------- */
+.marquee{overflow:hidden;padding:clamp(28px,5vh,54px) 0;border-bottom:1px solid var(--line)}
+.marquee-track{display:flex;gap:0;width:max-content;animation:mq 30s linear infinite;white-space:nowrap}
+@keyframes mq{to{transform:translateX(-50%)}}
+@media(prefers-reduced-motion:reduce){.marquee-track{animation:none}}
+.marquee span{
+  font-family:var(--serif);font-weight:700;font-size:clamp(30px,4.6vw,62px);
+  letter-spacing:-.01em;padding-right:28px;
+}
+.marquee span::after{content:"✳";color:var(--accent);font-size:.6em;vertical-align:middle;margin-left:28px}
+.marquee .out{color:transparent;-webkit-text-stroke:1px var(--ink)}
 
 /* ---------- sections ---------- */
-.sec-head{max-width:640px;margin-bottom:52px}
-.sec-head h2{font-size:clamp(26px,3.4vw,40px);font-weight:800;line-height:1.2;margin-bottom:16px}
-.sec-head h2 em{font-style:normal;color:var(--accent)}
-.sec-head p{color:var(--muted);font-size:16px}
+section{padding:clamp(64px,11vh,130px) 0}
+.sec-label{display:flex;align-items:baseline;gap:18px;color:var(--ink-soft);margin-bottom:clamp(28px,4vh,48px)}
+.sec-label::after{content:"";flex:1;height:1px;background:var(--line);align-self:center}
+h2.big{
+  font-family:var(--serif);font-weight:700;
+  font-size:clamp(32px,5vw,68px);line-height:1.05;letter-spacing:-.015em;
+  max-width:20ch;text-wrap:balance;margin-bottom:clamp(28px,5vh,56px);
+}
+h2.big em{font-style:italic;font-weight:600;color:var(--accent)}
 
-/* for whom */
-.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-.card{background:var(--card);border:1px solid rgba(255,255,255,.07);border-radius:var(--radius);padding:32px;transition:.25s}
-.card:hover{transform:translateY(-6px);border-color:rgba(200,245,66,.4)}
-.card .ico{width:52px;height:52px;border-radius:14px;background:rgba(200,245,66,.12);display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:20px}
-.card h3{font-size:18px;margin-bottom:10px}
-.card p{color:var(--muted);font-size:14px}
+/* audience rows */
+.rows{border-top:1px solid var(--line)}
+.row{
+  display:grid;grid-template-columns:clamp(56px,8vw,120px) minmax(0,.85fr) minmax(0,1.15fr) 48px;
+  gap:clamp(14px,2.5vw,40px);align-items:baseline;
+  padding:clamp(22px,3.5vh,40px) 0;border-bottom:1px solid var(--line);
+  transition:padding-left .35s cubic-bezier(.22,1,.36,1);
+}
+.row:hover{padding-left:14px}
+.row .idx{font-family:var(--mono);font-size:13px;color:var(--ink-soft)}
+.row h3{font-family:var(--serif);font-weight:600;font-size:clamp(21px,2.6vw,32px);line-height:1.15}
+.row p{color:var(--ink-soft);font-size:15.5px;max-width:52ch}
+.row .go{font-size:22px;color:var(--accent);opacity:0;transform:translateX(-8px);transition:.3s;justify-self:end}
+.row:hover .go{opacity:1;transform:none}
 
 /* program */
-.program{background:var(--bg-soft)}
-.modules{display:flex;flex-direction:column;gap:14px}
-.module{background:var(--card);border:1px solid rgba(255,255,255,.07);border-radius:var(--radius);overflow:hidden}
-.module summary{display:flex;align-items:center;gap:20px;padding:24px 28px;cursor:pointer;list-style:none;font-weight:600;font-size:16px}
-.module summary::-webkit-details-marker{display:none}
-.module .num{font-family:'Unbounded';font-size:14px;color:var(--accent);min-width:36px}
-.module .arrow{margin-left:auto;transition:.25s;color:var(--muted)}
-.module[open] .arrow{transform:rotate(45deg);color:var(--accent)}
-.module .body{padding:0 28px 26px 84px;color:var(--muted);font-size:14px}
-.module .body li{margin-bottom:6px;list-style:none;padding-left:20px;position:relative}
-.module .body li::before{content:"→";position:absolute;left:0;color:var(--accent)}
+.program{background:var(--paper-2)}
+.mod{border-bottom:1px solid var(--line)}
+.mod:first-of-type{border-top:1px solid var(--line)}
+.mod summary{
+  list-style:none;cursor:pointer;
+  display:grid;grid-template-columns:clamp(56px,8vw,120px) minmax(0,1fr) auto 40px;
+  gap:clamp(14px,2.5vw,40px);align-items:center;
+  padding:clamp(20px,3vh,34px) 0;
+}
+.mod summary::-webkit-details-marker{display:none}
+.mod .idx{font-family:var(--mono);font-size:13px;color:var(--ink-soft)}
+.mod h3{font-family:var(--serif);font-weight:600;font-size:clamp(20px,2.4vw,30px);transition:color .2s}
+.mod summary:hover h3{color:var(--accent)}
+.mod .meta{font-family:var(--mono);font-size:12px;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.06em;white-space:nowrap}
+.mod .x{
+  justify-self:end;width:34px;height:34px;border:1px solid var(--line);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;font-size:17px;color:var(--ink-soft);
+  transition:transform .35s cubic-bezier(.22,1,.36,1),background .25s,color .25s;
+}
+.mod[open] .x{transform:rotate(45deg);background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.mod-body{
+  display:grid;grid-template-columns:clamp(56px,8vw,120px) minmax(0,1fr);
+  gap:clamp(14px,2.5vw,40px);padding:0 0 clamp(22px,3vh,36px);
+}
+.mod-body ul{list-style:none;max-width:64ch}
+.mod-body li{padding:10px 0 10px 26px;position:relative;color:var(--ink-soft);font-size:15.5px;border-top:1px dashed var(--line)}
+.mod-body li:first-child{border-top:none}
+.mod-body li::before{content:"→";position:absolute;left:0;color:var(--accent)}
+.mod-body .proj{color:var(--ink);font-weight:500}
+.program-note{margin-top:28px;display:flex;gap:12px;align-items:center;color:var(--ink-soft);font-size:14.5px}
+.program-note .dot{width:8px;height:8px;border-radius:50%;background:var(--accent);flex:none}
 
-/* results */
-.results .grid-3 .card b{font-family:'Unbounded';font-size:30px;color:var(--accent);display:block;margin-bottom:8px}
-
-/* tools */
-.tools{display:flex;flex-wrap:wrap;gap:14px}
-.tool{padding:12px 24px;border-radius:60px;border:1px solid rgba(255,255,255,.14);font-size:14px;font-weight:500;color:var(--muted)}
-.tool:hover{border-color:var(--accent);color:var(--text)}
+/* work wall */
+.wall{padding-bottom:0}
+.wall-grid{
+  display:grid;grid-template-columns:repeat(12,1fr);
+  gap:clamp(12px,1.8vw,24px);align-items:start;
+}
+.piece{border-radius:6px;overflow:hidden;position:relative;transition:transform .4s cubic-bezier(.22,1,.36,1)}
+.piece:hover{transform:translateY(-6px)}
+.piece .ph{width:100%;display:block}
+.piece figcaption{
+  position:absolute;left:10px;bottom:10px;
+  font-family:var(--mono);font-size:11px;letter-spacing:.05em;text-transform:uppercase;
+  background:var(--paper);padding:5px 10px;border-radius:3px;color:var(--ink);
+}
+.p1{grid-column:1/span 5;margin-top:34px}
+.p2{grid-column:6/span 4}
+.p3{grid-column:10/span 3;margin-top:60px}
+.p4{grid-column:2/span 3;margin-top:26px}
+.p5{grid-column:5/span 5;margin-top:-30px}
+.p6{grid-column:10/span 3;margin-top:8px}
+.wall-note{margin:clamp(26px,4vh,44px) 0 0;color:var(--ink-soft);font-size:14.5px;text-align:right;font-family:var(--mono);text-transform:uppercase;letter-spacing:.06em}
 
 /* reviews */
-.reviews{background:var(--bg-soft)}
-.review-card{display:flex;flex-direction:column;gap:18px}
-.review-card .stars{color:var(--accent);letter-spacing:3px}
-.review-card p{font-size:14px;color:var(--text)}
-.review-author{display:flex;align-items:center;gap:14px;margin-top:auto}
-.avatar{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px;color:#0d0d12}
-.review-author b{font-size:14px;display:block}
-.review-author span{font-size:12px;color:var(--muted)}
+.quotes{display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(14px,2vw,28px)}
+.quote{
+  background:#fbf9f4;border:1px solid var(--line);border-radius:6px;
+  padding:clamp(24px,3vw,40px);position:relative;
+  box-shadow:0 18px 40px -22px rgba(78,60,40,.28);
+  transition:transform .4s cubic-bezier(.22,1,.36,1);
+}
+.quote:hover{transform:translateY(-6px) rotate(0deg) !important}
+.q1{grid-column:1/span 5;transform:rotate(-1.3deg)}
+.q2{grid-column:6/span 4;transform:rotate(.9deg);margin-top:46px}
+.q3{grid-column:10/span 3;transform:rotate(-.6deg);margin-top:14px}
+.quote .tape{
+  position:absolute;top:-12px;left:50%;transform:translateX(-50%) rotate(-2deg);
+  width:88px;height:24px;background:rgba(232,67,31,.18);border-left:1px dashed rgba(232,67,31,.4);border-right:1px dashed rgba(232,67,31,.4);
+}
+.quote p{font-family:var(--serif);font-style:italic;font-size:clamp(16px,1.5vw,19px);line-height:1.55;margin-bottom:22px}
+.quote .who{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.quote .who b{font-size:14.5px;font-weight:600}
+.quote .who span{font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.05em}
+.quote .res{margin-top:10px;display:inline-block;font-family:var(--mono);font-size:11.5px;color:var(--accent);border:1px solid color-mix(in srgb,var(--accent) 40%,transparent);border-radius:999px;padding:4px 12px;letter-spacing:.04em}
 
-/* pricing / offer */
-.offer-box{background:linear-gradient(135deg,rgba(139,92,246,.18),rgba(200,245,66,.1));border:1px solid rgba(200,245,66,.3);border-radius:28px;padding:56px;display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center;position:relative;overflow:hidden}
-.offer-box h2{font-size:clamp(24px,3vw,36px);margin-bottom:16px}
-.offer-box .old{color:var(--muted);text-decoration:line-through;font-size:20px;margin-right:14px}
-.offer-box .new{font-family:'Unbounded';font-size:36px;color:var(--accent);font-weight:800}
-.offer-box ul{margin:22px 0 0;list-style:none}
-.offer-box ul li{padding-left:30px;position:relative;margin-bottom:10px;font-size:15px}
-.offer-box ul li::before{content:"✓";position:absolute;left:0;color:var(--accent);font-weight:700}
-.timer{display:flex;gap:14px;margin:24px 0}
-.timer div{background:rgba(13,13,18,.65);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:14px 0;text-align:center;min-width:76px}
-.timer b{font-family:'Unbounded';font-size:26px;display:block;color:var(--text)}
-.timer span{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+/* ---------- offer ---------- */
+.offer{background:var(--accent);color:var(--paper);position:relative;overflow:hidden}
+.offer::before{
+  content:"✳";position:absolute;right:-60px;top:-90px;font-size:420px;line-height:1;
+  color:rgba(244,240,232,.1);pointer-events:none;
+}
+.offer .sec-label{color:color-mix(in srgb,var(--paper) 70%,transparent)}
+.offer .sec-label::after{background:rgba(244,240,232,.25)}
+.offer-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:clamp(32px,5vw,80px);align-items:start}
+.offer h2{
+  font-family:var(--serif);font-weight:700;font-size:clamp(34px,4.6vw,64px);
+  line-height:1.04;letter-spacing:-.015em;margin-bottom:22px;text-wrap:balance;
+}
+.offer h2 em{font-style:italic;font-weight:600}
+.offer .lead{color:color-mix(in srgb,var(--paper) 82%,transparent);max-width:46ch;margin-bottom:34px;font-size:16.5px}
+.price-line{display:flex;align-items:baseline;gap:18px;flex-wrap:wrap;margin-bottom:8px}
+.price-line .now{font-family:var(--serif);font-weight:700;font-size:clamp(40px,4.4vw,60px);font-variant-numeric:tabular-nums}
+.price-line .was{font-family:var(--mono);font-size:17px;text-decoration:line-through;color:color-mix(in srgb,var(--paper) 65%,transparent)}
+.price-line .cut{font-family:var(--mono);font-size:12px;border:1px solid var(--paper);border-radius:999px;padding:4px 12px;letter-spacing:.05em}
+.per{font-family:var(--mono);font-size:13px;color:color-mix(in srgb,var(--paper) 75%,transparent);margin-bottom:30px}
+.timer{display:flex;gap:0;border:1px solid rgba(244,240,232,.4);border-radius:6px;overflow:hidden;width:max-content;margin-bottom:34px}
+.timer div{padding:14px 18px;text-align:center;border-left:1px solid rgba(244,240,232,.4)}
+.timer div:first-child{border-left:none}
+.timer b{display:block;font-family:var(--mono);font-weight:500;font-size:26px;font-variant-numeric:tabular-nums;line-height:1.2}
+.timer span{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:color-mix(in srgb,var(--paper) 70%,transparent)}
+.offer-list{list-style:none;max-width:52ch}
+.offer-list li{padding:12px 0 12px 30px;position:relative;border-top:1px solid rgba(244,240,232,.25);font-size:15.5px}
+.offer-list li::before{content:"—";position:absolute;left:0}
 
 /* form */
-.form-card{background:var(--card);border:1px solid rgba(255,255,255,.1);border-radius:24px;padding:40px}
-.form-card h3{font-size:20px;margin-bottom:8px}
-.form-card>p{color:var(--muted);font-size:14px;margin-bottom:24px}
-.form-card input{width:100%;padding:16px 20px;margin-bottom:14px;border-radius:14px;border:1px solid rgba(255,255,255,.14);background:var(--bg);color:var(--text);font-size:15px;font-family:inherit;outline:none;transition:.2s}
-.form-card input:focus{border-color:var(--accent)}
-.form-card .btn{width:100%}
-.form-note{font-size:12px;color:var(--muted);margin-top:14px;text-align:center}
-.form-success{display:none;text-align:center;padding:40px 0}
-.form-success .big{font-size:52px;margin-bottom:16px}
+.form-card{
+  background:var(--paper);color:var(--ink);border-radius:8px;
+  padding:clamp(28px,3.4vw,48px);
+  box-shadow:0 30px 60px -30px rgba(60,20,5,.5);
+}
+.form-card h3{font-family:var(--serif);font-weight:700;font-size:26px;margin-bottom:6px}
+.form-card .sub{color:var(--ink-soft);font-size:14.5px;margin-bottom:30px}
+.field{position:relative;margin-bottom:26px}
+.field input{
+  width:100%;border:none;border-bottom:1px solid var(--line);background:transparent;
+  font-family:var(--sans);font-size:16px;color:var(--ink);padding:10px 2px;outline:none;
+  border-radius:0;transition:border-color .25s;
+}
+.field input:focus{border-color:var(--ink)}
+.field label{
+  position:absolute;left:2px;top:10px;color:var(--ink-soft);font-size:15px;pointer-events:none;
+  transition:transform .25s cubic-bezier(.22,1,.36,1),font-size .25s,color .25s;
+  transform-origin:left top;
+}
+.field input:focus+label,.field input:not(:placeholder-shown)+label{
+  transform:translateY(-20px);font-size:11px;color:var(--accent);
+  font-family:var(--mono);text-transform:uppercase;letter-spacing:.07em;
+}
+.field .err{display:none;font-size:12.5px;color:var(--accent);margin-top:6px}
+.field.bad input{border-color:var(--accent)}
+.field.bad .err{display:block}
+.form-card .btn{width:100%;justify-content:center;font-size:16px;padding:16px}
+.fine{font-size:12px;color:var(--ink-soft);margin-top:16px;text-align:center}
+.fine a{text-decoration:underline;text-underline-offset:3px}
+.form-done{display:none;text-align:center;padding:34px 0}
+.form-done .mark{font-family:var(--serif);font-style:italic;font-size:56px;color:var(--accent);line-height:1;margin-bottom:14px}
+.form-done h3{font-family:var(--serif);font-size:26px;margin-bottom:8px}
+.form-done p{color:var(--ink-soft);font-size:14.5px}
 
 /* faq */
-.faq .module summary{font-size:15px}
-.faq .module .body{padding-left:28px}
+.faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,4vw,64px) clamp(32px,5vw,88px)}
+.faq-item h3{font-family:var(--serif);font-weight:600;font-size:clamp(18px,1.8vw,23px);margin-bottom:10px;line-height:1.3}
+.faq-item h3::before{content:"✳ ";color:var(--accent);font-size:.75em}
+.faq-item p{color:var(--ink-soft);font-size:15px;max-width:56ch}
 
-/* footer */
-footer{border-top:1px solid rgba(255,255,255,.07);padding:40px 0;font-size:13px;color:var(--muted)}
-.foot{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center}
-
-/* mobile */
-@media(max-width:900px){
-  .hero-grid{grid-template-columns:1fr}
-  .hero-visual{max-width:480px}
-  .grid-3{grid-template-columns:1fr 1fr}
-  .offer-box{grid-template-columns:1fr;padding:36px}
-  .nav-links{display:none}
+/* final */
+.final{padding-bottom:clamp(70px,10vh,120px)}
+.final h2{
+  font-family:var(--serif);font-weight:700;
+  font-size:clamp(38px,7vw,104px);line-height:1;letter-spacing:-.02em;
+  text-wrap:balance;margin-bottom:36px;
 }
-@media(max-width:600px){
-  section{padding:56px 0}
-  .grid-3{grid-template-columns:1fr}
-  .hero{padding:56px 0 48px}
-  .hero-stats{gap:24px}
-  .module .body{padding-left:28px}
-  .floating{display:none}
-  .timer div{min-width:64px}
+.final h2 em{font-style:italic;font-weight:600;color:var(--accent)}
+.final .row-cta{display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+.final .seats{font-family:var(--mono);font-size:12.5px;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.07em}
+.final .seats b{color:var(--accent)}
+
+footer{border-top:1px solid var(--line);padding:34px 0 44px;color:var(--ink-soft);font-size:13px}
+.foot{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}
+.foot .legal{max-width:52ch}
+.foot a{text-decoration:underline;text-underline-offset:3px}
+
+/* ---------- responsive ---------- */
+@media(max-width:960px){
+  .nav-mid{display:none}
+  .hero-cols{grid-template-columns:1fr}
+  .hero-actions{justify-content:flex-start}
+  .stats .wrap{grid-template-columns:1fr 1fr}
+  .stat:nth-child(3){border-left:none;padding-left:0}
+  .stat{border-top:1px solid var(--line)}
+  .stat:nth-child(-n+2){border-top:none}
+  .row{grid-template-columns:clamp(40px,7vw,64px) 1fr;grid-template-rows:auto auto}
+  .row h3{grid-column:2}
+  .row p{grid-column:2}
+  .row .go{display:none}
+  .mod summary{grid-template-columns:clamp(40px,7vw,64px) 1fr 40px}
+  .mod .meta{display:none}
+  .mod-body{grid-template-columns:1fr;padding-left:clamp(40px,7vw,64px)}
+  .offer-grid{grid-template-columns:1fr}
+  .quotes{grid-template-columns:1fr 1fr}
+  .q1{grid-column:1/span 2}
+  .q2{grid-column:1;margin-top:0}
+  .q3{grid-column:2;margin-top:0}
+  .wall-grid{grid-template-columns:repeat(6,1fr)}
+  .p1{grid-column:1/span 4;margin-top:0}
+  .p2{grid-column:5/span 2}
+  .p3{grid-column:1/span 2;margin-top:0}
+  .p4{grid-column:3/span 2;margin-top:20px}
+  .p5{grid-column:5/span 2;margin-top:-14px}
+  .p6{display:none}
+}
+@media(max-width:620px){
+  .sticker{display:none}
+  .hero h1 .l2{padding-left:0}
+  .faq-grid{grid-template-columns:1fr}
+  .quotes{grid-template-columns:1fr}
+  .q1,.q2,.q3{grid-column:1;transform:none;margin-top:0}
+  .stats .wrap{grid-template-columns:1fr 1fr}
+  .timer{width:100%}
+  .timer div{flex:1;padding:12px 8px}
+  .hero-meta span:nth-child(2){display:none}
 }
 </style>
 </head>
 <body>
 
 <header>
-  <div class="container nav">
-    <div class="logo">INTERNO<span>.</span>SCHOOL</div>
-    <nav class="nav-links">
-      <a href="#program">Программа</a>
-      <a href="#results">Результаты</a>
-      <a href="#reviews">Отзывы</a>
-      <a href="#faq">FAQ</a>
+  <div class="wrap nav">
+    <a class="logo" href="#top">interno<i>.</i>school</a>
+    <nav class="nav-mid mono">
+      <a href="#program">программа</a>
+      <a href="#works">работы</a>
+      <a href="#reviews">отзывы</a>
+      <a href="#faq">вопросы</a>
     </nav>
-    <a href="#signup" class="btn btn-accent btn-sm">Бесплатный урок</a>
+    <a href="#signup" class="btn btn-sm btn-solid">вводный урок — 0 ₽</a>
   </div>
 </header>
 
+<main id="top">
+
 <!-- HERO -->
-<section class="hero">
-  <div class="container hero-grid">
-    <div>
-      <span class="tag">Набор на поток открыт · старт через 7 дней</span>
-      <h1>Стань <em>графическим дизайнером</em> за 4 месяца — с нуля до первых заказов</h1>
-      <p class="lead">Практический онлайн-курс INTERNO School: 80% практики, личный наставник, портфолио из 8 реальных проектов и помощь с поиском первых клиентов.</p>
-      <div class="hero-cta">
-        <a href="#signup" class="btn btn-accent">Записаться на бесплатный урок</a>
-        <a href="#program" class="btn btn-outline">Смотреть программу</a>
-      </div>
-      <div class="hero-stats">
-        <div class="stat"><b>1 200+</b><span>выпускников</span></div>
-        <div class="stat"><b>8</b><span>проектов в портфолио</span></div>
-        <div class="stat"><b>4 мес</b><span>до первых заказов</span></div>
+<section class="hero" style="padding-bottom:0">
+  <div class="wrap">
+    <div class="hero-meta mono">
+      <span>онлайн-курс · 16 недель</span>
+      <span>для тех, кто начинает с нуля</span>
+      <span><span class="dot">●</span> набор открыт</span>
+    </div>
+    <a class="sticker" href="#signup" aria-label="Записаться на бесплатный вводный урок">
+      <span>вводный урок<b>бесплатно</b>↓</span>
+    </a>
+    <h1 class="rv">
+      Графический
+      <span class="l2">дизайн — <em>это</em><span class="pill" role="presentation"></span></span>
+      <span class="l3">профессия, <em>не талант.</em></span>
+    </h1>
+    <div class="hero-cols">
+      <p class="hero-note rv" style="transition-delay:.1s">
+        Насмотренность, композиция и Figma тренируются как мышцы.
+        За 16 недель вы соберёте <b>портфолио из 8 проектов</b> и возьмёте
+        первый платный заказ — <b>ещё до конца курса</b>. Наставник разбирает каждую работу.
+      </p>
+      <div class="hero-actions rv" style="transition-delay:.2s">
+        <a href="#signup" class="btn btn-accent">записаться на урок <span class="arr">→</span></a>
+        <a href="#program" class="btn">программа</a>
       </div>
     </div>
-    <div class="hero-visual">
-      <div class="floating f1">💰 Первый заказ — уже во время курса</div>
-      <div class="hero-card">
-        <span class="chip">Проект студента</span>
-        <h3>Айдентика для кофейни</h3>
-        <p>Логотип, фирменный стиль, упаковка и оформление соцсетей — 3-й модуль курса.</p>
-        <div class="palette">
-          <i style="background:#c8f542"></i>
-          <i style="background:#8b5cf6"></i>
-          <i style="background:#f4f4f6"></i>
-          <i style="background:#ff7a59"></i>
-          <i style="background:#2dd4bf"></i>
-        </div>
-      </div>
-      <div class="floating f2">🎨 Наставник проверяет каждую работу</div>
+  </div>
+  <div class="stats">
+    <div class="wrap" style="padding-left:clamp(20px,4vw,56px);padding-right:clamp(20px,4vw,56px)">
+      <div class="stat rv"><b>1 214</b><span>выпускников с 2021 года</span></div>
+      <div class="stat rv" style="transition-delay:.05s"><b>8</b><span>проектов в портфолио</span></div>
+      <div class="stat rv" style="transition-delay:.1s"><b>63%</b><span>берут заказ до выпуска</span></div>
+      <div class="stat rv" style="transition-delay:.15s"><b>4,88</b><span>оценка курса по анкетам</span></div>
     </div>
   </div>
 </section>
 
-<!-- TICKER -->
-<div class="ticker" aria-hidden="true">
-  <div class="ticker-track">
-    <span>Логотипы</span><span>Айдентика</span><span>Figma</span><span>Photoshop</span><span>Illustrator</span><span>Соцсети</span><span>Упаковка</span><span>Типографика</span>
-    <span>Логотипы</span><span>Айдентика</span><span>Figma</span><span>Photoshop</span><span>Illustrator</span><span>Соцсети</span><span>Упаковка</span><span>Типографика</span>
+<!-- MARQUEE -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>айдентика</span><span class="out">плакаты</span><span>упаковка</span><span class="out">логотипы</span><span>соцсети</span><span class="out">типографика</span>
+    <span>айдентика</span><span class="out">плакаты</span><span>упаковка</span><span class="out">логотипы</span><span>соцсети</span><span class="out">типографика</span>
   </div>
 </div>
 
-<!-- FOR WHOM -->
-<section id="forwhom">
-  <div class="container">
-    <div class="sec-head">
-      <h2>Курс подойдёт, если ты…</h2>
-      <p>Не нужно художественное образование и опыт — начинаем с самых основ.</p>
-    </div>
-    <div class="grid-3">
-      <div class="card">
-        <div class="ico">🚀</div>
-        <h3>Начинаешь с нуля</h3>
-        <p>Хочешь освоить творческую профессию с доходом от 60 000 ₽, но не знаешь, с чего начать. Мы проведём за руку от первого макета до первого клиента.</p>
+<!-- AUDIENCE -->
+<section>
+  <div class="wrap">
+    <div class="sec-label mono"><span>01</span><span>кому подойдёт</span></div>
+    <h2 class="big rv">Три причины, по которым сюда <em>приходят</em></h2>
+    <div class="rows">
+      <div class="row rv">
+        <span class="idx">/ 01</span>
+        <h3>Войти в профессию</h3>
+        <p>Никакого опыта и «художки» — начинаем с насмотренности и композиции. 90% студентов INTERNO стартовали с нуля, первый макет вы сделаете уже на вводном уроке.</p>
+        <span class="go">→</span>
       </div>
-      <div class="card">
-        <div class="ico">🔄</div>
-        <h3>Хочешь сменить работу</h3>
-        <p>Устал от офиса и задач «на бегу». Дизайн — это удалёнка, свободный график и работа из любой точки мира.</p>
+      <div class="row rv">
+        <span class="idx">/ 02</span>
+        <h3>Уйти с нелюбимой работы</h3>
+        <p>Дизайн — удалённая профессия со свободным графиком. Учёба занимает 6–8 часов в неделю и совмещается с офисом: вебинары вечером, всё остаётся в записи.</p>
+        <span class="go">→</span>
       </div>
-      <div class="card">
-        <div class="ico">📈</div>
-        <h3>Ищешь подработку</h3>
-        <p>Студент или в декрете — фриланс-заказы на логотипы и соцсети можно брать уже с середины курса, уделяя 2–3 часа в день.</p>
+      <div class="row rv">
+        <span class="idx">/ 03</span>
+        <h3>Зарабатывать на фрилансе</h3>
+        <p>Логотипы, соцсети, упаковка — заказы, которые берут уже с середины курса. Отдельный модуль о том, где искать клиентов и как называть цену без страха.</p>
+        <span class="go">→</span>
       </div>
     </div>
   </div>
@@ -261,162 +480,234 @@ footer{border-top:1px solid rgba(255,255,255,.07);padding:40px 0;font-size:13px;
 
 <!-- PROGRAM -->
 <section class="program" id="program">
-  <div class="container">
-    <div class="sec-head">
-      <h2>Программа курса — <em>16 недель практики</em></h2>
-      <p>Каждый модуль заканчивается реальным проектом в портфолио. Никакой воды — только то, за что платят клиенты.</p>
-    </div>
-    <div class="modules">
-      <details class="module" open>
-        <summary><span class="num">01</span> Основы дизайна и композиции <span class="arrow">+</span></summary>
-        <div class="body"><ul>
-          <li>Насмотренность: как отличать хороший дизайн от плохого</li>
-          <li>Композиция, цвет, типографика — база визуального языка</li>
-          <li>Проект: постер и карточка для соцсетей</li>
-        </ul></div>
-      </details>
-      <details class="module">
-        <summary><span class="num">02</span> Figma, Photoshop и Illustrator <span class="arrow">+</span></summary>
-        <div class="body"><ul>
-          <li>Рабочие инструменты дизайнера от простого к сложному</li>
-          <li>Обработка изображений, вектор, макеты и автолейауты</li>
-          <li>Проект: набор баннеров для реального бренда</li>
-        </ul></div>
-      </details>
-      <details class="module">
-        <summary><span class="num">03</span> Логотип и фирменный стиль <span class="arrow">+</span></summary>
-        <div class="body"><ul>
-          <li>Разработка логотипа: от брифа и референсов до презентации</li>
-          <li>Айдентика: цвет, шрифты, носители, гайдлайн</li>
-          <li>Проект: полная айдентика для заказчика из базы школы</li>
-        </ul></div>
-      </details>
-      <details class="module">
-        <summary><span class="num">04</span> Дизайн для соцсетей и рекламы <span class="arrow">+</span></summary>
-        <div class="body"><ul>
-          <li>Оформление Instagram*, VK, Telegram: сетки, сторис, обложки</li>
-          <li>Рекламные креативы, которые проходят модерацию и продают</li>
-          <li>Проект: визуальная концепция аккаунта бренда</li>
-        </ul></div>
-      </details>
-      <details class="module">
-        <summary><span class="num">05</span> Портфолио, фриланс и первые заказы <span class="arrow">+</span></summary>
-        <div class="body"><ul>
-          <li>Собираем портфолио на Behance и упаковываем кейсы</li>
-          <li>Где искать клиентов: биржи, соцсети, сарафан — пошаговый план</li>
-          <li>Как считать цену, вести переговоры и не работать бесплатно</li>
-          <li>Финал: защита диплома перед приглашённым заказчиком</li>
-        </ul></div>
-      </details>
-    </div>
+  <div class="wrap">
+    <div class="sec-label mono"><span>02</span><span>программа · 16 недель</span></div>
+    <h2 class="big rv">Пять модулей. Каждый заканчивается <em>работой в портфолио</em></h2>
+
+    <details class="mod rv" open>
+      <summary>
+        <span class="idx">/ 01</span>
+        <h3>Насмотренность и композиция</h3>
+        <span class="meta">нед. 1–3</span>
+        <span class="x">+</span>
+      </summary>
+      <div class="mod-body"><span></span><ul>
+        <li>Как устроен «хороший дизайн»: разбор сотни референсов</li>
+        <li>Сетка, ритм, контраст, цвет и типографика на практике</li>
+        <li class="proj">→ Проект: плакат и карточки для соцсетей</li>
+      </ul></div>
+    </details>
+    <details class="mod rv">
+      <summary>
+        <span class="idx">/ 02</span>
+        <h3>Figma, Photoshop, Illustrator</h3>
+        <span class="meta">нед. 4–6</span>
+        <span class="x">+</span>
+      </summary>
+      <div class="mod-body"><span></span><ul>
+        <li>Инструменты от простого к сложному, горячие клавиши, автолейауты</li>
+        <li>Вектор, обработка изображений, подготовка макетов к печати</li>
+        <li class="proj">→ Проект: серия баннеров для действующего бренда</li>
+      </ul></div>
+    </details>
+    <details class="mod rv">
+      <summary>
+        <span class="idx">/ 03</span>
+        <h3>Логотип и айдентика</h3>
+        <span class="meta">нед. 7–10</span>
+        <span class="x">+</span>
+      </summary>
+      <div class="mod-body"><span></span><ul>
+        <li>От брифа и мудборда до презентации знака заказчику</li>
+        <li>Фирменный стиль: цвет, шрифтовые пары, носители, мини-гайдлайн</li>
+        <li class="proj">→ Проект: айдентика для реального заказчика из базы школы</li>
+      </ul></div>
+    </details>
+    <details class="mod rv">
+      <summary>
+        <span class="idx">/ 04</span>
+        <h3>Дизайн для соцсетей и рекламы</h3>
+        <span class="meta">нед. 11–13</span>
+        <span class="x">+</span>
+      </summary>
+      <div class="mod-body"><span></span><ul>
+        <li>Визуальные системы для VK, Telegram и Instagram*: сетки, сторис, обложки</li>
+        <li>Рекламные креативы: что проходит модерацию и что кликают</li>
+        <li class="proj">→ Проект: визуальная концепция аккаунта бренда</li>
+      </ul></div>
+    </details>
+    <details class="mod rv">
+      <summary>
+        <span class="idx">/ 05</span>
+        <h3>Портфолио и первые деньги</h3>
+        <span class="meta">нед. 14–16</span>
+        <span class="x">+</span>
+      </summary>
+      <div class="mod-body"><span></span><ul>
+        <li>Упаковка кейсов на Behance: как показывать процесс, а не только результат</li>
+        <li>Поиск клиентов: биржи, соцсети, сарафан — пошаговый план на 30 дней</li>
+        <li>Переговоры и цены: как не работать «за отзыв»</li>
+        <li class="proj">→ Финал: защита диплома перед приглашённым заказчиком</li>
+      </ul></div>
+    </details>
+
+    <p class="program-note rv"><span class="dot"></span>Все лекции остаются в записи навсегда. Наставник даёт видеоразбор каждой домашней работы в течение 48 часов.</p>
   </div>
 </section>
 
-<!-- RESULTS -->
-<section class="results" id="results">
-  <div class="container">
-    <div class="sec-head">
-      <h2>Что будет у тебя <em>после курса</em></h2>
+<!-- WORK WALL -->
+<section class="wall" id="works">
+  <div class="wrap">
+    <div class="sec-label mono"><span>03</span><span>работы студентов</span></div>
+    <h2 class="big rv">Сделано людьми, которые <em>полгода назад</em> открыли Figma впервые</h2>
+    <div class="wall-grid">
+      <figure class="piece p1 rv">
+        <svg class="ph" viewBox="0 0 500 340" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Плакат: типографическая композиция">
+          <rect width="500" height="340" fill="#161410"/>
+          <text x="30" y="120" font-family="Georgia" font-style="italic" font-size="92" fill="#f4f0e8">Форма</text>
+          <text x="30" y="215" font-family="Georgia" font-size="92" fill="#e8431f">&amp; ритм</text>
+          <rect x="30" y="260" width="200" height="2" fill="#f4f0e8"/>
+          <text x="30" y="300" font-family="monospace" font-size="15" fill="#9a938a">лекторий · 12 октября · москва</text>
+          <circle cx="430" cy="70" r="34" fill="#e8431f"/>
+        </svg>
+        <figcaption>Алина Ч. · модуль 1</figcaption>
+      </figure>
+      <figure class="piece p2 rv" style="transition-delay:.08s">
+        <svg class="ph" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Упаковка кофе">
+          <rect width="400" height="400" fill="#e8dfce"/>
+          <rect x="90" y="60" width="220" height="300" rx="10" fill="#2a4734"/>
+          <circle cx="200" cy="150" r="46" fill="#e8431f"/>
+          <text x="200" y="245" font-family="Georgia" font-style="italic" font-size="34" fill="#f4f0e8" text-anchor="middle">крепче</text>
+          <text x="200" y="280" font-family="monospace" font-size="13" fill="#c9bfa8" text-anchor="middle">арабика · 250 г</text>
+        </svg>
+        <figcaption>Марат И. · модуль 3</figcaption>
+      </figure>
+      <figure class="piece p3 rv" style="transition-delay:.16s">
+        <svg class="ph" viewBox="0 0 300 380" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Обложка плейлиста">
+          <rect width="300" height="380" fill="#e8431f"/>
+          <text x="24" y="90" font-family="Georgia" font-size="58" fill="#161410">шум</text>
+          <text x="24" y="150" font-family="Georgia" font-style="italic" font-size="58" fill="#f4f0e8">города</text>
+          <rect x="24" y="290" width="252" height="52" rx="26" fill="#161410"/>
+          <text x="150" y="323" font-family="monospace" font-size="15" fill="#f4f0e8" text-anchor="middle">слушать →</text>
+        </svg>
+        <figcaption>Соня Р. · модуль 4</figcaption>
+      </figure>
+      <figure class="piece p4 rv">
+        <svg class="ph" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Логотип пекарни">
+          <rect width="300" height="300" fill="#f0e4c9"/>
+          <circle cx="150" cy="128" r="58" fill="none" stroke="#161410" stroke-width="3"/>
+          <path d="M108 128 q42 -50 84 0 q-42 50 -84 0z" fill="#e8431f"/>
+          <text x="150" y="235" font-family="Georgia" font-style="italic" font-size="30" fill="#161410" text-anchor="middle">хлеб&amp;соль</text>
+        </svg>
+        <figcaption>Вера Д. · модуль 3</figcaption>
+      </figure>
+      <figure class="piece p5 rv" style="transition-delay:.08s">
+        <svg class="ph" viewBox="0 0 500 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Айдентика фестиваля">
+          <rect width="500" height="300" fill="#1c2f52"/>
+          <text x="30" y="105" font-family="Georgia" font-size="72" fill="#f4f0e8">свет</text>
+          <text x="200" y="105" font-family="Georgia" font-style="italic" font-size="72" fill="#e8a71f">fest</text>
+          <rect x="30" y="140" width="440" height="1" fill="#5a6c94"/>
+          <text x="30" y="180" font-family="monospace" font-size="14" fill="#8ea0c9">фестиваль уличной культуры · 21–23 июня</text>
+          <circle cx="440" cy="230" r="26" fill="#e8431f"/>
+          <circle cx="395" cy="230" r="26" fill="none" stroke="#e8a71f" stroke-width="2"/>
+        </svg>
+        <figcaption>Тимур Б. · диплом</figcaption>
+      </figure>
+      <figure class="piece p6 rv" style="transition-delay:.16s">
+        <svg class="ph" viewBox="0 0 300 340" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Меню кафе">
+          <rect width="300" height="340" fill="#f4f0e8"/>
+          <rect x="0" y="0" width="300" height="8" fill="#e8431f"/>
+          <text x="24" y="70" font-family="Georgia" font-style="italic" font-size="40" fill="#161410">меню</text>
+          <rect x="24" y="100" width="120" height="1.5" fill="#161410"/>
+          <text x="24" y="140" font-family="monospace" font-size="13" fill="#6e675c">эспрессо ……… 190</text>
+          <text x="24" y="170" font-family="monospace" font-size="13" fill="#6e675c">фильтр ………… 240</text>
+          <text x="24" y="200" font-family="monospace" font-size="13" fill="#6e675c">раф солёный … 320</text>
+        </svg>
+        <figcaption>Лена П. · модуль 2</figcaption>
+      </figure>
     </div>
-    <div class="grid-3">
-      <div class="card"><b>8 работ</b><p>Готовое портфолио с реальными проектами — главный аргумент для клиентов и работодателей.</p></div>
-      <div class="card"><b>3 инструмента</b><p>Уверенное владение Figma, Photoshop и Illustrator на уровне коммерческих задач.</p></div>
-      <div class="card"><b>60 000 ₽+</b><p>Реалистичный доход начинающего дизайнера на фрилансе или junior-позиции через 2–3 месяца после выпуска.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- TOOLS -->
-<section>
-  <div class="container">
-    <div class="sec-head">
-      <h2>Освоишь инструменты, которые требуют в вакансиях</h2>
-    </div>
-    <div class="tools">
-      <span class="tool">Figma</span>
-      <span class="tool">Adobe Photoshop</span>
-      <span class="tool">Adobe Illustrator</span>
-      <span class="tool">Behance</span>
-      <span class="tool">Midjourney & AI-инструменты</span>
-      <span class="tool">Tilda</span>
-    </div>
+    <p class="wall-note">+ ещё 340 работ в галерее выпускников</p>
   </div>
 </section>
 
 <!-- REVIEWS -->
-<section class="reviews" id="reviews">
-  <div class="container">
-    <div class="sec-head">
-      <h2>Отзывы выпускников</h2>
-      <p>Средняя оценка курса — 4,9 из 5 по итогам анкет выпускников.</p>
-    </div>
-    <div class="grid-3">
-      <div class="card review-card">
-        <div class="stars">★★★★★</div>
-        <p>«Пришла без опыта, боялась, что "не творческая". На 3-м модуле сделала айдентику для кофейни подруги — это стало первым платным заказом, ещё до конца курса».</p>
-        <div class="review-author">
-          <div class="avatar" style="background:#c8f542">А</div>
-          <div><b>Алина, 27</b><span>из администратора — в дизайнеры</span></div>
-        </div>
-      </div>
-      <div class="card review-card">
-        <div class="stars">★★★★★</div>
-        <p>«Больше всего зашла обратная связь: наставник разбирал каждую работу по видео. За 4 месяца прогресс больше, чем за год самостоятельных туториалов на YouTube».</p>
-        <div class="review-author">
-          <div class="avatar" style="background:#8b5cf6">Д</div>
-          <div><b>Дмитрий, 32</b><span>совмещал курс с основной работой</span></div>
-        </div>
-      </div>
-      <div class="card review-card">
-        <div class="stars">★★★★★</div>
-        <p>«В декрете искала удалённую подработку. Сейчас веду 3 постоянных клиентов по соцсетям, зарабатываю около 55 000 ₽ в месяц, работая по 3–4 часа в день».</p>
-        <div class="review-author">
-          <div class="avatar" style="background:#ff7a59">М</div>
-          <div><b>Мария, 29</b><span>фриланс из дома</span></div>
-        </div>
-      </div>
+<section id="reviews">
+  <div class="wrap">
+    <div class="sec-label mono"><span>04</span><span>отзывы</span></div>
+    <h2 class="big rv">Что говорят <em>после защиты</em></h2>
+    <div class="quotes">
+      <blockquote class="quote q1 rv">
+        <span class="tape" aria-hidden="true"></span>
+        <p>«Пришла из административной работы, рисовать не умею до сих пор — и это ни разу не помешало. На третьем модуле сделала айдентику для кофейни подруги, и это стало первым платным заказом. До конца курса оставалось ещё полтора месяца».</p>
+        <div class="who"><b>Алина Черкасова, 27</b><span>поток №11</span></div>
+        <span class="res">первый заказ — 18 000 ₽</span>
+      </blockquote>
+      <blockquote class="quote q2 rv" style="transition-delay:.1s">
+        <p>«Главное здесь — обратная связь. Наставник записывал видеоразбор каждой домашки: что работает, что нет и почему. За четыре месяца я продвинулся дальше, чем за год туториалов на YouTube».</p>
+        <div class="who"><b>Дмитрий Ан, 32</b><span>поток №9</span></div>
+        <span class="res">junior-дизайнер в студии</span>
+      </blockquote>
+      <blockquote class="quote q3 rv" style="transition-delay:.2s">
+        <p>«Училась в декрете, по вечерам. Сейчас веду троих постоянных клиентов по соцсетям — это 50–60 тысяч в месяц из дома».</p>
+        <div class="who"><b>Мария Ветрова, 29</b><span>поток №12</span></div>
+        <span class="res">фриланс · 3 клиента</span>
+      </blockquote>
     </div>
   </div>
 </section>
 
-<!-- OFFER + FORM -->
-<section id="signup">
-  <div class="container">
-    <div class="offer-box">
+<!-- OFFER -->
+<section class="offer" id="signup">
+  <div class="wrap">
+    <div class="sec-label mono"><span>05</span><span>запись на поток</span></div>
+    <div class="offer-grid">
       <div>
-        <h2>Запишись на бесплатный вводный урок</h2>
-        <p style="color:var(--muted)">Познакомишься с профессией, сделаешь первый макет в Figma и получишь скидку на полный курс.</p>
-        <div style="margin-top:22px">
-          <span class="old">49 900 ₽</span>
-          <span class="new">34 900 ₽</span>
+        <h2 class="rv">Начните с бесплатного <em>вводного урока</em></h2>
+        <p class="lead rv">90 минут с наставником: разберёте, как устроена профессия, сделаете первый макет в Figma и поймёте, ваше это или нет. Без «продающего вебинара» — сразу практика.</p>
+        <div class="price-line rv">
+          <span class="now">34 900 ₽</span>
+          <span class="was">49 900 ₽</span>
+          <span class="cut">−30% до старта потока</span>
         </div>
-        <div class="timer" id="timer">
-          <div><b id="t-d">2</b><span>дня</span></div>
-          <div><b id="t-h">14</b><span>часов</span></div>
-          <div><b id="t-m">32</b><span>минуты</span></div>
-          <div><b id="t-s">08</b><span>секунд</span></div>
+        <p class="per">полный курс · рассрочка от 2 908 ₽/мес · это цена за 16 недель, не за месяц</p>
+        <div class="timer rv" id="timer" aria-label="До конца скидки">
+          <div><b id="t-d">02</b><span>дня</span></div>
+          <div><b id="t-h">14</b><span>часа</span></div>
+          <div><b id="t-m">32</b><span>мин</span></div>
+          <div><b id="t-s">08</b><span>сек</span></div>
         </div>
-        <ul>
-          <li>Рассрочка от 2 908 ₽/мес без переплат</li>
-          <li>Возврат денег в течение 14 дней, если не подойдёт</li>
-          <li>Доступ к материалам курса — навсегда</li>
-          <li>Сертификат INTERNO School по окончании</li>
+        <ul class="offer-list rv">
+          <li>Вернём всю сумму в первые 14 дней, если поймёте, что не ваше</li>
+          <li>Доступ к записям и обновлениям курса — бессрочный</li>
+          <li>Сертификат INTERNO School и рекомендация лучших студентов партнёрам</li>
         </ul>
       </div>
-      <div class="form-card">
-        <form id="lead-form">
-          <h3>Оставь заявку</h3>
-          <p>Менеджер свяжется в течение 15 минут и подберёт удобное время урока.</p>
-          <input type="text" name="name" placeholder="Имя" required>
-          <input type="tel" name="phone" placeholder="+7 (___) ___-__-__" required pattern="[\d\s\+\(\)\-]{10,18}">
-          <input type="email" name="email" placeholder="Email (необязательно)">
-          <button type="submit" class="btn btn-accent">Получить бесплатный урок</button>
-          <p class="form-note">Нажимая кнопку, ты соглашаешься с <a href="#" style="text-decoration:underline">политикой конфиденциальности</a></p>
+      <div class="form-card rv" style="transition-delay:.15s">
+        <form id="lead-form" novalidate>
+          <h3>Записаться на урок</h3>
+          <p class="sub">Пришлём ссылку и подберём удобное время — обычно отвечаем в течение 15 минут.</p>
+          <div class="field">
+            <input type="text" id="f-name" name="name" placeholder=" " autocomplete="name" required>
+            <label for="f-name">Как вас зовут</label>
+            <p class="err">Напишите имя — иначе не будем знать, как обращаться.</p>
+          </div>
+          <div class="field">
+            <input type="tel" id="f-phone" name="phone" placeholder=" " autocomplete="tel" inputmode="tel" required>
+            <label for="f-phone">Телефон или Telegram</label>
+            <p class="err">Нужен номер или @ник — сюда придёт ссылка на урок.</p>
+          </div>
+          <div class="field">
+            <input type="email" id="f-email" name="email" placeholder=" " autocomplete="email">
+            <label for="f-email">Почта — если удобнее письмом</label>
+            <p class="err">Похоже, в адресе опечатка.</p>
+          </div>
+          <button type="submit" class="btn btn-accent">забронировать место <span class="arr">→</span></button>
+          <p class="fine">Нажимая кнопку, вы соглашаетесь с <a href="#" rel="nofollow">политикой конфиденциальности</a>. Никаких рассылок без спроса.</p>
         </form>
-        <div class="form-success" id="form-success">
-          <div class="big">🎉</div>
-          <h3>Заявка отправлена!</h3>
-          <p style="color:var(--muted);font-size:14px;margin-top:8px">Мы свяжемся с тобой в ближайшие 15 минут.</p>
+        <div class="form-done" id="form-done">
+          <div class="mark">✳</div>
+          <h3>Место за вами</h3>
+          <p>Свяжемся в течение 15 минут и пришлём ссылку на вводный урок.</p>
         </div>
       </div>
     </div>
@@ -424,55 +715,75 @@ footer{border-top:1px solid rgba(255,255,255,.07);padding:40px 0;font-size:13px;
 </section>
 
 <!-- FAQ -->
-<section class="faq" id="faq">
-  <div class="container">
-    <div class="sec-head">
-      <h2>Частые вопросы</h2>
-    </div>
-    <div class="modules">
-      <details class="module">
-        <summary>Я никогда не рисовал(а). У меня получится? <span class="arrow">+</span></summary>
-        <div class="body"><p>Да. Графический дизайн — это не про умение рисовать, а про композицию, смысл и инструменты. 90% наших студентов начинали с нуля.</p></div>
-      </details>
-      <details class="module">
-        <summary>Сколько времени нужно уделять учёбе? <span class="arrow">+</span></summary>
-        <div class="body"><p>6–8 часов в неделю: 2 вебинара и практика. Все уроки остаются в записи — можно учиться в своём темпе и совмещать с работой.</p></div>
-      </details>
-      <details class="module">
-        <summary>Нужен ли мощный компьютер и платные программы? <span class="arrow">+</span></summary>
-        <div class="body"><p>Достаточно обычного ноутбука. Figma бесплатна, а по программам Adobe мы дадим инструкции по доступу и бесплатные аналоги.</p></div>
-      </details>
-      <details class="module">
-        <summary>Поможете найти работу или заказы? <span class="arrow">+</span></summary>
-        <div class="body"><p>Да. Отдельный модуль посвящён фрилансу и трудоустройству: упакуем портфолио, составим план поиска клиентов, лучших студентов рекомендуем партнёрам школы.</p></div>
-      </details>
-      <details class="module">
-        <summary>Что, если мне не понравится? <span class="arrow">+</span></summary>
-        <div class="body"><p>В течение первых 14 дней вернём полную стоимость без объяснения причин — просто напиши менеджеру.</p></div>
-      </details>
+<section id="faq">
+  <div class="wrap">
+    <div class="sec-label mono"><span>06</span><span>вопросы</span></div>
+    <h2 class="big rv">Что спрашивают <em>перед стартом</em></h2>
+    <div class="faq-grid">
+      <div class="faq-item rv">
+        <h3>Я не умею рисовать. Это проблема?</h3>
+        <p>Нет. Графический дизайн — про композицию, смысл и инструменты, а не про академический рисунок. Большинство студентов не рисуют вовсе.</p>
+      </div>
+      <div class="faq-item rv" style="transition-delay:.05s">
+        <h3>Сколько времени занимает учёба?</h3>
+        <p>6–8 часов в неделю: два вебинара и практика. Всё остаётся в записи, дедлайны мягкие — курс рассчитан на совмещение с работой.</p>
+      </div>
+      <div class="faq-item rv" style="transition-delay:.1s">
+        <h3>Нужен мощный компьютер и платный софт?</h3>
+        <p>Достаточно обычного ноутбука. Figma бесплатна; по Adobe дадим инструкции по доступу и покажем бесплатные аналоги.</p>
+      </div>
+      <div class="faq-item rv" style="transition-delay:.15s">
+        <h3>Поможете с работой и заказами?</h3>
+        <p>Последний модуль целиком об этом: упаковка портфолио, план поиска клиентов на 30 дней, переговоры. Сильных выпускников рекомендуем студиям-партнёрам.</p>
+      </div>
+      <div class="faq-item rv" style="transition-delay:.2s">
+        <h3>А если пойму, что не моё?</h3>
+        <p>В первые 14 дней возвращаем полную стоимость без объяснения причин. Одно сообщение менеджеру — и деньги вернутся тем же способом.</p>
+      </div>
+      <div class="faq-item rv" style="transition-delay:.25s">
+        <h3>Чем вы отличаетесь от больших онлайн-школ?</h3>
+        <p>Потоки по 30 человек, живой наставник вместо «проверяющих кураторов» и реальные заказчики в учебных проектах вместо выдуманных брифов.</p>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- FINAL CTA -->
-<section style="padding-top:0">
-  <div class="container" style="text-align:center">
-    <h2 style="font-size:clamp(24px,3.4vw,38px);font-family:'Unbounded';margin-bottom:18px">Через 4 месяца ты — <span style="color:var(--accent)">дизайнер с портфолио</span>.<br>Или всё останется как есть.</h2>
-    <p style="color:var(--muted);margin-bottom:30px">Мест на потоке: осталось 9 из 30</p>
-    <a href="#signup" class="btn btn-accent" style="font-size:17px;padding:18px 40px">Занять место на бесплатном уроке</a>
+<!-- FINAL -->
+<section class="final" style="padding-top:0">
+  <div class="wrap">
+    <h2 class="rv">Через 16 недель — <em>портфолио и первый заказ.</em><br>Или всё как было.</h2>
+    <div class="row-cta rv">
+      <a href="#signup" class="btn btn-accent" style="font-size:17px;padding:18px 36px">занять место на уроке <span class="arr">→</span></a>
+      <span class="seats">на потоке осталось <b>9 мест</b> из 30</span>
+    </div>
   </div>
 </section>
+
+</main>
 
 <footer>
-  <div class="container foot">
-    <div class="logo" style="font-size:16px">INTERNO<span>.</span>SCHOOL</div>
-    <div>Онлайн-школа дизайна · azizcollab@gmail.com</div>
-    <div>© 2026 INTERNO School. Все права защищены.<br>*Instagram принадлежит Meta, признанной экстремистской организацией в РФ.</div>
+  <div class="wrap foot">
+    <div>
+      <div class="logo" style="font-size:17px">interno<i>.</i>school</div>
+      <p style="margin-top:6px">Онлайн-школа дизайна · <a href="mailto:azizcollab@gmail.com">azizcollab@gmail.com</a></p>
+    </div>
+    <div class="legal">
+      <p><a href="#">Политика конфиденциальности</a> · <a href="#">Договор оферты</a></p>
+      <p style="margin-top:6px">© 2026 INTERNO School. *Instagram принадлежит Meta, признанной экстремистской организацией в РФ.</p>
+    </div>
   </div>
 </footer>
 
 <script>
-// Таймер акции: до конца — 2 суток 14:32:08 от первого визита, хранится в localStorage
+// плавное появление блоков
+(function(){
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}});
+  },{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.rv').forEach(function(el){io.observe(el)});
+})();
+
+// таймер скидки: дедлайн фиксируется на первый визит
 (function(){
   var KEY='interno_deadline';
   var deadline=localStorage.getItem(KEY);
@@ -494,26 +805,44 @@ footer{border-top:1px solid rgba(255,255,255,.07);padding:40px 0;font-size:13px;
   tick();setInterval(tick,1000);
 })();
 
-// Форма заявки — подставьте свой endpoint (CRM, Telegram-бот, amoCRM и т.п.)
-document.getElementById('lead-form').addEventListener('submit',function(e){
-  e.preventDefault();
-  var data=Object.fromEntries(new FormData(this));
-  // TODO: отправка лида, например:
-  // fetch('https://your-crm.example.com/lead',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});
-  console.log('Lead:',data);
-  this.style.display='none';
-  document.getElementById('form-success').style.display='block';
-  // Событие конверсии для пикселей рекламных кабинетов:
-  if(window.fbq)fbq('track','Lead');
-  if(window.ym&&window.YM_COUNTER_ID)ym(window.YM_COUNTER_ID,'reachGoal','lead');
-  if(window.VK&&VK.Retargeting)VK.Retargeting.Event('lead');
-});
+// форма: инлайн-валидация + событие конверсии
+(function(){
+  var form=document.getElementById('lead-form');
+  var fields={
+    name:{el:document.getElementById('f-name'),ok:function(v){return v.trim().length>=2}},
+    phone:{el:document.getElementById('f-phone'),ok:function(v){return /^(\+?[\d\s\(\)\-]{10,18}|@[\w\d_]{3,})$/.test(v.trim())}},
+    email:{el:document.getElementById('f-email'),ok:function(v){return v.trim()===''||/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim())}}
+  };
+  Object.keys(fields).forEach(function(k){
+    fields[k].el.addEventListener('input',function(){
+      this.closest('.field').classList.remove('bad');
+    });
+  });
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var bad=false;
+    Object.keys(fields).forEach(function(k){
+      var f=fields[k];
+      if(!f.ok(f.el.value)){f.el.closest('.field').classList.add('bad');bad=true}
+    });
+    if(bad)return;
+    var data=Object.fromEntries(new FormData(form));
+    // TODO: отправка лида в CRM / Telegram-бот:
+    // fetch('https://your-crm.example.com/lead',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});
+    form.style.display='none';
+    document.getElementById('form-done').style.display='block';
+    // события конверсии для рекламных пикселей
+    if(window.fbq)fbq('track','Lead');
+    if(window.ym&&window.YM_COUNTER_ID)ym(window.YM_COUNTER_ID,'reachGoal','lead');
+    if(window.VK&&VK.Retargeting)VK.Retargeting.Event('lead');
+  });
+})();
 </script>
 <!--
-  ПОДКЛЮЧЕНИЕ ПИКСЕЛЕЙ ДЛЯ ТАРГЕТА (вставьте перед </body>):
-  1. Meta Pixel — код из Events Manager (событие Lead уже отправляется при сабмите формы)
-  2. VK Pixel — код из рекламного кабинета VK Ads
-  3. Яндекс.Метрика — задайте window.YM_COUNTER_ID и добавьте счётчик, цель «lead» уже настроена в коде
+  ПИКСЕЛИ ДЛЯ ТАРГЕТА — вставить перед </body>:
+  1. Meta Pixel (Events Manager) — событие Lead уже отправляется при сабмите
+  2. VK Ads Pixel — событие lead настроено
+  3. Яндекс.Метрика — задайте window.YM_COUNTER_ID, цель «lead» уже в коде
 -->
 </body>
 </html>
