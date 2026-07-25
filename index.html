@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Курс «Графический дизайнер» — INTERNO School</title>
+<meta name="description" content="Станьте графическим дизайнером за 4 месяца. Практический курс INTERNO School: портфолио из 8 проектов, наставник, помощь с первыми заказами. Запишитесь на бесплатный урок!">
+<meta property="og:title" content="Курс «Графический дизайнер» — INTERNO School">
+<meta property="og:description" content="С нуля до первых заказов за 4 месяца. Бесплатный вводный урок — записывайтесь!">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0d0d12;
+  --bg-soft:#15151d;
+  --card:#1b1b26;
+  --accent:#c8f542;
+  --accent-2:#8b5cf6;
+  --text:#f4f4f6;
+  --muted:#a0a0b0;
+  --radius:20px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
+h1,h2,h3,.logo{font-family:'Unbounded',sans-serif}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+.container{max-width:1140px;margin:0 auto;padding:0 20px}
+section{padding:80px 0}
+
+/* ---------- header ---------- */
+header{position:sticky;top:0;z-index:100;background:rgba(13,13,18,.85);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.06)}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:16px 0}
+.logo{font-weight:800;font-size:20px;letter-spacing:.05em}
+.logo span{color:var(--accent)}
+.nav-links{display:flex;gap:28px;font-size:14px;color:var(--muted)}
+.nav-links a:hover{color:var(--text)}
+.btn{display:inline-block;padding:14px 28px;border-radius:60px;font-weight:600;font-size:15px;cursor:pointer;border:none;transition:.25s;text-align:center}
+.btn-accent{background:var(--accent);color:#0d0d12}
+.btn-accent:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(200,245,66,.35)}
+.btn-outline{border:1px solid rgba(255,255,255,.25);color:var(--text);background:transparent}
+.btn-outline:hover{border-color:var(--accent);color:var(--accent)}
+.btn-sm{padding:10px 20px;font-size:13px}
+
+/* ---------- hero ---------- */
+.hero{padding:90px 0 70px;position:relative}
+.hero::before{content:"";position:absolute;top:-200px;right:-200px;width:600px;height:600px;background:radial-gradient(circle,rgba(139,92,246,.25),transparent 65%);pointer-events:none}
+.hero::after{content:"";position:absolute;bottom:-250px;left:-200px;width:600px;height:600px;background:radial-gradient(circle,rgba(200,245,66,.12),transparent 65%);pointer-events:none}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center;position:relative;z-index:1}
+.tag{display:inline-block;padding:8px 18px;border-radius:60px;background:rgba(200,245,66,.12);color:var(--accent);font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-bottom:24px}
+.hero h1{font-size:clamp(32px,4.6vw,54px);font-weight:800;line-height:1.15;margin-bottom:22px}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero p.lead{font-size:18px;color:var(--muted);max-width:520px;margin-bottom:34px}
+.hero-cta{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:40px}
+.hero-stats{display:flex;gap:40px;flex-wrap:wrap}
+.stat b{display:block;font-family:'Unbounded';font-size:28px;color:var(--accent)}
+.stat span{font-size:13px;color:var(--muted)}
+.hero-visual{position:relative}
+.hero-card{background:linear-gradient(145deg,#1d1d29,#14141c);border:1px solid rgba(255,255,255,.08);border-radius:28px;padding:36px;position:relative;overflow:hidden}
+.hero-card::before{content:"Aa";position:absolute;right:-30px;bottom:-60px;font-family:'Unbounded';font-size:220px;font-weight:800;color:rgba(139,92,246,.15);line-height:1}
+.hero-card .chip{display:inline-block;background:var(--accent-2);color:#fff;font-size:12px;font-weight:600;padding:6px 14px;border-radius:40px;margin-bottom:18px}
+.hero-card h3{font-size:22px;margin-bottom:10px}
+.hero-card p{color:var(--muted);font-size:14px;margin-bottom:24px}
+.palette{display:flex;gap:10px}
+.palette i{width:42px;height:42px;border-radius:12px;display:block}
+.floating{position:absolute;background:var(--card);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:12px 18px;font-size:13px;font-weight:600;box-shadow:0 16px 40px rgba(0,0,0,.45)}
+.floating.f1{top:-18px;left:-24px;color:var(--accent)}
+.floating.f2{bottom:-18px;right:-10px;color:var(--accent-2)}
+
+/* ---------- ticker ---------- */
+.ticker{border-top:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.06);padding:18px 0;overflow:hidden;background:var(--bg-soft)}
+.ticker-track{display:flex;gap:48px;white-space:nowrap;animation:scroll 28s linear infinite;width:max-content}
+.ticker-track span{font-family:'Unbounded';font-size:14px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.ticker-track span::after{content:"✦";color:var(--accent);margin-left:48px}
+@keyframes scroll{to{transform:translateX(-50%)}}
+
+/* ---------- sections ---------- */
+.sec-head{max-width:640px;margin-bottom:52px}
+.sec-head h2{font-size:clamp(26px,3.4vw,40px);font-weight:800;line-height:1.2;margin-bottom:16px}
+.sec-head h2 em{font-style:normal;color:var(--accent)}
+.sec-head p{color:var(--muted);font-size:16px}
+
+/* for whom */
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.card{background:var(--card);border:1px solid rgba(255,255,255,.07);border-radius:var(--radius);padding:32px;transition:.25s}
+.card:hover{transform:translateY(-6px);border-color:rgba(200,245,66,.4)}
+.card .ico{width:52px;height:52px;border-radius:14px;background:rgba(200,245,66,.12);display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:20px}
+.card h3{font-size:18px;margin-bottom:10px}
+.card p{color:var(--muted);font-size:14px}
+
+/* program */
+.program{background:var(--bg-soft)}
+.modules{display:flex;flex-direction:column;gap:14px}
+.module{background:var(--card);border:1px solid rgba(255,255,255,.07);border-radius:var(--radius);overflow:hidden}
+.module summary{display:flex;align-items:center;gap:20px;padding:24px 28px;cursor:pointer;list-style:none;font-weight:600;font-size:16px}
+.module summary::-webkit-details-marker{display:none}
+.module .num{font-family:'Unbounded';font-size:14px;color:var(--accent);min-width:36px}
+.module .arrow{margin-left:auto;transition:.25s;color:var(--muted)}
+.module[open] .arrow{transform:rotate(45deg);color:var(--accent)}
+.module .body{padding:0 28px 26px 84px;color:var(--muted);font-size:14px}
+.module .body li{margin-bottom:6px;list-style:none;padding-left:20px;position:relative}
+.module .body li::before{content:"→";position:absolute;left:0;color:var(--accent)}
+
+/* results */
+.results .grid-3 .card b{font-family:'Unbounded';font-size:30px;color:var(--accent);display:block;margin-bottom:8px}
+
+/* tools */
+.tools{display:flex;flex-wrap:wrap;gap:14px}
+.tool{padding:12px 24px;border-radius:60px;border:1px solid rgba(255,255,255,.14);font-size:14px;font-weight:500;color:var(--muted)}
+.tool:hover{border-color:var(--accent);color:var(--text)}
+
+/* reviews */
+.reviews{background:var(--bg-soft)}
+.review-card{display:flex;flex-direction:column;gap:18px}
+.review-card .stars{color:var(--accent);letter-spacing:3px}
+.review-card p{font-size:14px;color:var(--text)}
+.review-author{display:flex;align-items:center;gap:14px;margin-top:auto}
+.avatar{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px;color:#0d0d12}
+.review-author b{font-size:14px;display:block}
+.review-author span{font-size:12px;color:var(--muted)}
+
+/* pricing / offer */
+.offer-box{background:linear-gradient(135deg,rgba(139,92,246,.18),rgba(200,245,66,.1));border:1px solid rgba(200,245,66,.3);border-radius:28px;padding:56px;display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center;position:relative;overflow:hidden}
+.offer-box h2{font-size:clamp(24px,3vw,36px);margin-bottom:16px}
+.offer-box .old{color:var(--muted);text-decoration:line-through;font-size:20px;margin-right:14px}
+.offer-box .new{font-family:'Unbounded';font-size:36px;color:var(--accent);font-weight:800}
+.offer-box ul{margin:22px 0 0;list-style:none}
+.offer-box ul li{padding-left:30px;position:relative;margin-bottom:10px;font-size:15px}
+.offer-box ul li::before{content:"✓";position:absolute;left:0;color:var(--accent);font-weight:700}
+.timer{display:flex;gap:14px;margin:24px 0}
+.timer div{background:rgba(13,13,18,.65);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:14px 0;text-align:center;min-width:76px}
+.timer b{font-family:'Unbounded';font-size:26px;display:block;color:var(--text)}
+.timer span{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+
+/* form */
+.form-card{background:var(--card);border:1px solid rgba(255,255,255,.1);border-radius:24px;padding:40px}
+.form-card h3{font-size:20px;margin-bottom:8px}
+.form-card>p{color:var(--muted);font-size:14px;margin-bottom:24px}
+.form-card input{width:100%;padding:16px 20px;margin-bottom:14px;border-radius:14px;border:1px solid rgba(255,255,255,.14);background:var(--bg);color:var(--text);font-size:15px;font-family:inherit;outline:none;transition:.2s}
+.form-card input:focus{border-color:var(--accent)}
+.form-card .btn{width:100%}
+.form-note{font-size:12px;color:var(--muted);margin-top:14px;text-align:center}
+.form-success{display:none;text-align:center;padding:40px 0}
+.form-success .big{font-size:52px;margin-bottom:16px}
+
+/* faq */
+.faq .module summary{font-size:15px}
+.faq .module .body{padding-left:28px}
+
+/* footer */
+footer{border-top:1px solid rgba(255,255,255,.07);padding:40px 0;font-size:13px;color:var(--muted)}
+.foot{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center}
+
+/* mobile */
+@media(max-width:900px){
+  .hero-grid{grid-template-columns:1fr}
+  .hero-visual{max-width:480px}
+  .grid-3{grid-template-columns:1fr 1fr}
+  .offer-box{grid-template-columns:1fr;padding:36px}
+  .nav-links{display:none}
+}
+@media(max-width:600px){
+  section{padding:56px 0}
+  .grid-3{grid-template-columns:1fr}
+  .hero{padding:56px 0 48px}
+  .hero-stats{gap:24px}
+  .module .body{padding-left:28px}
+  .floating{display:none}
+  .timer div{min-width:64px}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container nav">
+    <div class="logo">INTERNO<span>.</span>SCHOOL</div>
+    <nav class="nav-links">
+      <a href="#program">Программа</a>
+      <a href="#results">Результаты</a>
+      <a href="#reviews">Отзывы</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a href="#signup" class="btn btn-accent btn-sm">Бесплатный урок</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container hero-grid">
+    <div>
+      <span class="tag">Набор на поток открыт · старт через 7 дней</span>
+      <h1>Стань <em>графическим дизайнером</em> за 4 месяца — с нуля до первых заказов</h1>
+      <p class="lead">Практический онлайн-курс INTERNO School: 80% практики, личный наставник, портфолио из 8 реальных проектов и помощь с поиском первых клиентов.</p>
+      <div class="hero-cta">
+        <a href="#signup" class="btn btn-accent">Записаться на бесплатный урок</a>
+        <a href="#program" class="btn btn-outline">Смотреть программу</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><b>1 200+</b><span>выпускников</span></div>
+        <div class="stat"><b>8</b><span>проектов в портфолио</span></div>
+        <div class="stat"><b>4 мес</b><span>до первых заказов</span></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="floating f1">💰 Первый заказ — уже во время курса</div>
+      <div class="hero-card">
+        <span class="chip">Проект студента</span>
+        <h3>Айдентика для кофейни</h3>
+        <p>Логотип, фирменный стиль, упаковка и оформление соцсетей — 3-й модуль курса.</p>
+        <div class="palette">
+          <i style="background:#c8f542"></i>
+          <i style="background:#8b5cf6"></i>
+          <i style="background:#f4f4f6"></i>
+          <i style="background:#ff7a59"></i>
+          <i style="background:#2dd4bf"></i>
+        </div>
+      </div>
+      <div class="floating f2">🎨 Наставник проверяет каждую работу</div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <span>Логотипы</span><span>Айдентика</span><span>Figma</span><span>Photoshop</span><span>Illustrator</span><span>Соцсети</span><span>Упаковка</span><span>Типографика</span>
+    <span>Логотипы</span><span>Айдентика</span><span>Figma</span><span>Photoshop</span><span>Illustrator</span><span>Соцсети</span><span>Упаковка</span><span>Типографика</span>
+  </div>
+</div>
+
+<!-- FOR WHOM -->
+<section id="forwhom">
+  <div class="container">
+    <div class="sec-head">
+      <h2>Курс подойдёт, если ты…</h2>
+      <p>Не нужно художественное образование и опыт — начинаем с самых основ.</p>
+    </div>
+    <div class="grid-3">
+      <div class="card">
+        <div class="ico">🚀</div>
+        <h3>Начинаешь с нуля</h3>
+        <p>Хочешь освоить творческую профессию с доходом от 60 000 ₽, но не знаешь, с чего начать. Мы проведём за руку от первого макета до первого клиента.</p>
+      </div>
+      <div class="card">
+        <div class="ico">🔄</div>
+        <h3>Хочешь сменить работу</h3>
+        <p>Устал от офиса и задач «на бегу». Дизайн — это удалёнка, свободный график и работа из любой точки мира.</p>
+      </div>
+      <div class="card">
+        <div class="ico">📈</div>
+        <h3>Ищешь подработку</h3>
+        <p>Студент или в декрете — фриланс-заказы на логотипы и соцсети можно брать уже с середины курса, уделяя 2–3 часа в день.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAM -->
+<section class="program" id="program">
+  <div class="container">
+    <div class="sec-head">
+      <h2>Программа курса — <em>16 недель практики</em></h2>
+      <p>Каждый модуль заканчивается реальным проектом в портфолио. Никакой воды — только то, за что платят клиенты.</p>
+    </div>
+    <div class="modules">
+      <details class="module" open>
+        <summary><span class="num">01</span> Основы дизайна и композиции <span class="arrow">+</span></summary>
+        <div class="body"><ul>
+          <li>Насмотренность: как отличать хороший дизайн от плохого</li>
+          <li>Композиция, цвет, типографика — база визуального языка</li>
+          <li>Проект: постер и карточка для соцсетей</li>
+        </ul></div>
+      </details>
+      <details class="module">
+        <summary><span class="num">02</span> Figma, Photoshop и Illustrator <span class="arrow">+</span></summary>
+        <div class="body"><ul>
+          <li>Рабочие инструменты дизайнера от простого к сложному</li>
+          <li>Обработка изображений, вектор, макеты и автолейауты</li>
+          <li>Проект: набор баннеров для реального бренда</li>
+        </ul></div>
+      </details>
+      <details class="module">
+        <summary><span class="num">03</span> Логотип и фирменный стиль <span class="arrow">+</span></summary>
+        <div class="body"><ul>
+          <li>Разработка логотипа: от брифа и референсов до презентации</li>
+          <li>Айдентика: цвет, шрифты, носители, гайдлайн</li>
+          <li>Проект: полная айдентика для заказчика из базы школы</li>
+        </ul></div>
+      </details>
+      <details class="module">
+        <summary><span class="num">04</span> Дизайн для соцсетей и рекламы <span class="arrow">+</span></summary>
+        <div class="body"><ul>
+          <li>Оформление Instagram*, VK, Telegram: сетки, сторис, обложки</li>
+          <li>Рекламные креативы, которые проходят модерацию и продают</li>
+          <li>Проект: визуальная концепция аккаунта бренда</li>
+        </ul></div>
+      </details>
+      <details class="module">
+        <summary><span class="num">05</span> Портфолио, фриланс и первые заказы <span class="arrow">+</span></summary>
+        <div class="body"><ul>
+          <li>Собираем портфолио на Behance и упаковываем кейсы</li>
+          <li>Где искать клиентов: биржи, соцсети, сарафан — пошаговый план</li>
+          <li>Как считать цену, вести переговоры и не работать бесплатно</li>
+          <li>Финал: защита диплома перед приглашённым заказчиком</li>
+        </ul></div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- RESULTS -->
+<section class="results" id="results">
+  <div class="container">
+    <div class="sec-head">
+      <h2>Что будет у тебя <em>после курса</em></h2>
+    </div>
+    <div class="grid-3">
+      <div class="card"><b>8 работ</b><p>Готовое портфолио с реальными проектами — главный аргумент для клиентов и работодателей.</p></div>
+      <div class="card"><b>3 инструмента</b><p>Уверенное владение Figma, Photoshop и Illustrator на уровне коммерческих задач.</p></div>
+      <div class="card"><b>60 000 ₽+</b><p>Реалистичный доход начинающего дизайнера на фрилансе или junior-позиции через 2–3 месяца после выпуска.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- TOOLS -->
+<section>
+  <div class="container">
+    <div class="sec-head">
+      <h2>Освоишь инструменты, которые требуют в вакансиях</h2>
+    </div>
+    <div class="tools">
+      <span class="tool">Figma</span>
+      <span class="tool">Adobe Photoshop</span>
+      <span class="tool">Adobe Illustrator</span>
+      <span class="tool">Behance</span>
+      <span class="tool">Midjourney & AI-инструменты</span>
+      <span class="tool">Tilda</span>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews" id="reviews">
+  <div class="container">
+    <div class="sec-head">
+      <h2>Отзывы выпускников</h2>
+      <p>Средняя оценка курса — 4,9 из 5 по итогам анкет выпускников.</p>
+    </div>
+    <div class="grid-3">
+      <div class="card review-card">
+        <div class="stars">★★★★★</div>
+        <p>«Пришла без опыта, боялась, что "не творческая". На 3-м модуле сделала айдентику для кофейни подруги — это стало первым платным заказом, ещё до конца курса».</p>
+        <div class="review-author">
+          <div class="avatar" style="background:#c8f542">А</div>
+          <div><b>Алина, 27</b><span>из администратора — в дизайнеры</span></div>
+        </div>
+      </div>
+      <div class="card review-card">
+        <div class="stars">★★★★★</div>
+        <p>«Больше всего зашла обратная связь: наставник разбирал каждую работу по видео. За 4 месяца прогресс больше, чем за год самостоятельных туториалов на YouTube».</p>
+        <div class="review-author">
+          <div class="avatar" style="background:#8b5cf6">Д</div>
+          <div><b>Дмитрий, 32</b><span>совмещал курс с основной работой</span></div>
+        </div>
+      </div>
+      <div class="card review-card">
+        <div class="stars">★★★★★</div>
+        <p>«В декрете искала удалённую подработку. Сейчас веду 3 постоянных клиентов по соцсетям, зарабатываю около 55 000 ₽ в месяц, работая по 3–4 часа в день».</p>
+        <div class="review-author">
+          <div class="avatar" style="background:#ff7a59">М</div>
+          <div><b>Мария, 29</b><span>фриланс из дома</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OFFER + FORM -->
+<section id="signup">
+  <div class="container">
+    <div class="offer-box">
+      <div>
+        <h2>Запишись на бесплатный вводный урок</h2>
+        <p style="color:var(--muted)">Познакомишься с профессией, сделаешь первый макет в Figma и получишь скидку на полный курс.</p>
+        <div style="margin-top:22px">
+          <span class="old">49 900 ₽</span>
+          <span class="new">34 900 ₽</span>
+        </div>
+        <div class="timer" id="timer">
+          <div><b id="t-d">2</b><span>дня</span></div>
+          <div><b id="t-h">14</b><span>часов</span></div>
+          <div><b id="t-m">32</b><span>минуты</span></div>
+          <div><b id="t-s">08</b><span>секунд</span></div>
+        </div>
+        <ul>
+          <li>Рассрочка от 2 908 ₽/мес без переплат</li>
+          <li>Возврат денег в течение 14 дней, если не подойдёт</li>
+          <li>Доступ к материалам курса — навсегда</li>
+          <li>Сертификат INTERNO School по окончании</li>
+        </ul>
+      </div>
+      <div class="form-card">
+        <form id="lead-form">
+          <h3>Оставь заявку</h3>
+          <p>Менеджер свяжется в течение 15 минут и подберёт удобное время урока.</p>
+          <input type="text" name="name" placeholder="Имя" required>
+          <input type="tel" name="phone" placeholder="+7 (___) ___-__-__" required pattern="[\d\s\+\(\)\-]{10,18}">
+          <input type="email" name="email" placeholder="Email (необязательно)">
+          <button type="submit" class="btn btn-accent">Получить бесплатный урок</button>
+          <p class="form-note">Нажимая кнопку, ты соглашаешься с <a href="#" style="text-decoration:underline">политикой конфиденциальности</a></p>
+        </form>
+        <div class="form-success" id="form-success">
+          <div class="big">🎉</div>
+          <h3>Заявка отправлена!</h3>
+          <p style="color:var(--muted);font-size:14px;margin-top:8px">Мы свяжемся с тобой в ближайшие 15 минут.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="container">
+    <div class="sec-head">
+      <h2>Частые вопросы</h2>
+    </div>
+    <div class="modules">
+      <details class="module">
+        <summary>Я никогда не рисовал(а). У меня получится? <span class="arrow">+</span></summary>
+        <div class="body"><p>Да. Графический дизайн — это не про умение рисовать, а про композицию, смысл и инструменты. 90% наших студентов начинали с нуля.</p></div>
+      </details>
+      <details class="module">
+        <summary>Сколько времени нужно уделять учёбе? <span class="arrow">+</span></summary>
+        <div class="body"><p>6–8 часов в неделю: 2 вебинара и практика. Все уроки остаются в записи — можно учиться в своём темпе и совмещать с работой.</p></div>
+      </details>
+      <details class="module">
+        <summary>Нужен ли мощный компьютер и платные программы? <span class="arrow">+</span></summary>
+        <div class="body"><p>Достаточно обычного ноутбука. Figma бесплатна, а по программам Adobe мы дадим инструкции по доступу и бесплатные аналоги.</p></div>
+      </details>
+      <details class="module">
+        <summary>Поможете найти работу или заказы? <span class="arrow">+</span></summary>
+        <div class="body"><p>Да. Отдельный модуль посвящён фрилансу и трудоустройству: упакуем портфолио, составим план поиска клиентов, лучших студентов рекомендуем партнёрам школы.</p></div>
+      </details>
+      <details class="module">
+        <summary>Что, если мне не понравится? <span class="arrow">+</span></summary>
+        <div class="body"><p>В течение первых 14 дней вернём полную стоимость без объяснения причин — просто напиши менеджеру.</p></div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section style="padding-top:0">
+  <div class="container" style="text-align:center">
+    <h2 style="font-size:clamp(24px,3.4vw,38px);font-family:'Unbounded';margin-bottom:18px">Через 4 месяца ты — <span style="color:var(--accent)">дизайнер с портфолио</span>.<br>Или всё останется как есть.</h2>
+    <p style="color:var(--muted);margin-bottom:30px">Мест на потоке: осталось 9 из 30</p>
+    <a href="#signup" class="btn btn-accent" style="font-size:17px;padding:18px 40px">Занять место на бесплатном уроке</a>
+  </div>
+</section>
+
+<footer>
+  <div class="container foot">
+    <div class="logo" style="font-size:16px">INTERNO<span>.</span>SCHOOL</div>
+    <div>Онлайн-школа дизайна · azizcollab@gmail.com</div>
+    <div>© 2026 INTERNO School. Все права защищены.<br>*Instagram принадлежит Meta, признанной экстремистской организацией в РФ.</div>
+  </div>
+</footer>
+
+<script>
+// Таймер акции: до конца — 2 суток 14:32:08 от первого визита, хранится в localStorage
+(function(){
+  var KEY='interno_deadline';
+  var deadline=localStorage.getItem(KEY);
+  if(!deadline){
+    deadline=Date.now()+(2*24*3600+14*3600+32*60+8)*1000;
+    localStorage.setItem(KEY,deadline);
+  }
+  deadline=+deadline;
+  var d=document.getElementById('t-d'),h=document.getElementById('t-h'),
+      m=document.getElementById('t-m'),s=document.getElementById('t-s');
+  function pad(n){return n<10?'0'+n:n}
+  function tick(){
+    var left=Math.max(0,Math.floor((deadline-Date.now())/1000));
+    d.textContent=pad(Math.floor(left/86400));
+    h.textContent=pad(Math.floor(left%86400/3600));
+    m.textContent=pad(Math.floor(left%3600/60));
+    s.textContent=pad(left%60);
+  }
+  tick();setInterval(tick,1000);
+})();
+
+// Форма заявки — подставьте свой endpoint (CRM, Telegram-бот, amoCRM и т.п.)
+document.getElementById('lead-form').addEventListener('submit',function(e){
+  e.preventDefault();
+  var data=Object.fromEntries(new FormData(this));
+  // TODO: отправка лида, например:
+  // fetch('https://your-crm.example.com/lead',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});
+  console.log('Lead:',data);
+  this.style.display='none';
+  document.getElementById('form-success').style.display='block';
+  // Событие конверсии для пикселей рекламных кабинетов:
+  if(window.fbq)fbq('track','Lead');
+  if(window.ym&&window.YM_COUNTER_ID)ym(window.YM_COUNTER_ID,'reachGoal','lead');
+  if(window.VK&&VK.Retargeting)VK.Retargeting.Event('lead');
+});
+</script>
+<!--
+  ПОДКЛЮЧЕНИЕ ПИКСЕЛЕЙ ДЛЯ ТАРГЕТА (вставьте перед </body>):
+  1. Meta Pixel — код из Events Manager (событие Lead уже отправляется при сабмите формы)
+  2. VK Pixel — код из рекламного кабинета VK Ads
+  3. Яндекс.Метрика — задайте window.YM_COUNTER_ID и добавьте счётчик, цель «lead» уже настроена в коде
+-->
+</body>
+</html>
