@@ -386,6 +386,12 @@ footer{border-top:1px solid var(--line);padding:34px 0 44px;color:var(--ink-soft
   .hero-meta span:nth-child(2){display:none}
 }
 </style>
+  <!-- Meta Pixel (тот же, что на остальных лендингах INTERNO) -->
+  <script>
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init','4251277901808457');fbq('track','PageView');
+  </script>
+  <script src="/funnel.js" defer></script>
 </head>
 <body>
 
@@ -694,14 +700,16 @@ footer{border-top:1px solid var(--line);padding:34px 0 44px;color:var(--ink-soft
           <div class="field">
             <input type="tel" id="f-phone" name="phone" placeholder=" " autocomplete="tel" inputmode="tel" required>
             <label for="f-phone">Телефон или Telegram</label>
-            <p class="err">Нужен номер или @ник — сюда придёт ссылка на урок.</p>
+            <p class="err">Нужен номер в формате 90 123 45 67 или @ник в Telegram.</p>
           </div>
           <div class="field">
             <input type="email" id="f-email" name="email" placeholder=" " autocomplete="email">
             <label for="f-email">Почта — если удобнее письмом</label>
             <p class="err">Похоже, в адресе опечатка.</p>
           </div>
+          <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
           <button type="submit" class="btn btn-accent">забронировать место <span class="arr">→</span></button>
+          <p class="fine" id="form-send-err" role="alert" style="display:none;color:#e5484d">Не получилось отправить заявку. Напишите нам в <a href="https://t.me/interno_school" target="_blank" rel="noopener">Telegram</a> или позвоните: <a href="tel:+998781131808">+998 78 113 18 08</a>.</p>
           <p class="fine">Нажимая кнопку, вы соглашаетесь с <a href="#" rel="nofollow">политикой конфиденциальности</a>. Никаких рассылок без спроса.</p>
         </form>
         <div class="form-done" id="form-done">
@@ -810,7 +818,7 @@ footer{border-top:1px solid var(--line);padding:34px 0 44px;color:var(--ink-soft
   var form=document.getElementById('lead-form');
   var fields={
     name:{el:document.getElementById('f-name'),ok:function(v){return v.trim().length>=2}},
-    phone:{el:document.getElementById('f-phone'),ok:function(v){return /^(\+?[\d\s\(\)\-]{10,18}|@[\w\d_]{3,})$/.test(v.trim())}},
+    phone:{el:document.getElementById('f-phone'),ok:function(v){v=v.trim();return /^@[\w\d_]{3,}$/.test(v)||(/^[\d\s\(\)\-\+]+$/.test(v)&&/^(998)?\d{9}$/.test(v.replace(/\D/g,'')))}},
     email:{el:document.getElementById('f-email'),ok:function(v){return v.trim()===''||/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim())}}
   };
   Object.keys(fields).forEach(function(k){
@@ -827,14 +835,26 @@ footer{border-top:1px solid var(--line);padding:34px 0 44px;color:var(--ink-soft
     });
     if(bad)return;
     var data=Object.fromEntries(new FormData(form));
-    // TODO: отправка лида в CRM / Telegram-бот:
-    // fetch('https://your-crm.example.com/lead',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});
-    form.style.display='none';
-    document.getElementById('form-done').style.display='block';
-    // события конверсии для рекламных пикселей
-    if(window.fbq)fbq('track','Lead');
-    if(window.ym&&window.YM_COUNTER_ID)ym(window.YM_COUNTER_ID,'reachGoal','lead');
-    if(window.VK&&VK.Retargeting)VK.Retargeting.Event('lead');
+    data.utm=window.funnel?funnel.utm():{};
+    data.page=location.href;
+    var btn=form.querySelector('button[type="submit"]'),btnHtml=btn.innerHTML;
+    var errBox=document.getElementById('form-send-err');
+    btn.disabled=true;btn.textContent='отправляем…';errBox.style.display='none';
+    fetch('/api/lead',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)})
+      .then(function(r){return r.json().catch(function(){return{}}).then(function(j){if(!r.ok||!j.ok)throw new Error(j.error||r.status)})})
+      .then(function(){
+        form.style.display='none';
+        document.getElementById('form-done').style.display='block';
+        // события конверсии для рекламных пикселей — только после того, как заявка дошла
+        if(window.fbq)fbq('track','Lead',{content_name:'graphic_design'});
+        if(window.ym&&window.YM_COUNTER_ID)ym(window.YM_COUNTER_ID,'reachGoal','lead');
+        if(window.VK&&VK.Retargeting)VK.Retargeting.Event('lead');
+      })
+      .catch(function(err){
+        if(String(err.message)==='invalid_input')fields.phone.el.closest('.field').classList.add('bad');
+        else errBox.style.display='block';
+      })
+      .finally(function(){btn.disabled=false;btn.innerHTML=btnHtml});
   });
 })();
 </script>
